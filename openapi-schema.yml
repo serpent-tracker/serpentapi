@@ -433,6 +433,415 @@ paths:
       responses:
         '204':
           description: ''
+  /api/v1/profiles/:
+    get:
+      operationId: listProfiles
+      description: ''
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    user:
+                      type: string
+                      readOnly: true
+                    avatar:
+                      type: string
+                      format: binary
+                      readOnly: true
+                    bio:
+                      type: string
+                      maxLength: 240
+                    city:
+                      type: string
+                      maxLength: 30
+          description: ''
+  /api/v1/profiles/{id}/:
+    get:
+      operationId: retrieveProfile
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this profile.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  avatar:
+                    type: string
+                    format: binary
+                    readOnly: true
+                  bio:
+                    type: string
+                    maxLength: 240
+                  city:
+                    type: string
+                    maxLength: 30
+          description: ''
+    put:
+      operationId: updateProfile
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this profile.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id007
+              properties:
+                bio:
+                  type: string
+                  maxLength: 240
+                city:
+                  type: string
+                  maxLength: 30
+          application/x-www-form-urlencoded:
+            schema: *id007
+          multipart/form-data:
+            schema: *id007
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  avatar:
+                    type: string
+                    format: binary
+                    readOnly: true
+                  bio:
+                    type: string
+                    maxLength: 240
+                  city:
+                    type: string
+                    maxLength: 30
+          description: ''
+    patch:
+      operationId: partial_updateProfile
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this profile.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id008
+              properties:
+                bio:
+                  type: string
+                  maxLength: 240
+                city:
+                  type: string
+                  maxLength: 30
+          application/x-www-form-urlencoded:
+            schema: *id008
+          multipart/form-data:
+            schema: *id008
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  avatar:
+                    type: string
+                    format: binary
+                    readOnly: true
+                  bio:
+                    type: string
+                    maxLength: 240
+                  city:
+                    type: string
+                    maxLength: 30
+          description: ''
+  /api/v1/status/:
+    get:
+      operationId: listProfileStatus
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    user_profile:
+                      type: string
+                      readOnly: true
+                    status_content:
+                      type: string
+                      maxLength: 240
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    updated_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                  required:
+                  - status_content
+          description: ''
+    post:
+      operationId: createProfileStatus
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id009
+              properties:
+                status_content:
+                  type: string
+                  maxLength: 240
+              required:
+              - status_content
+          application/x-www-form-urlencoded:
+            schema: *id009
+          multipart/form-data:
+            schema: *id009
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_profile:
+                    type: string
+                    readOnly: true
+                  status_content:
+                    type: string
+                    maxLength: 240
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                - status_content
+          description: ''
+  /api/v1/status/{id}/:
+    get:
+      operationId: retrieveProfileStatus
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_profile:
+                    type: string
+                    readOnly: true
+                  status_content:
+                    type: string
+                    maxLength: 240
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                - status_content
+          description: ''
+    put:
+      operationId: updateProfileStatus
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id010
+              properties:
+                status_content:
+                  type: string
+                  maxLength: 240
+              required:
+              - status_content
+          application/x-www-form-urlencoded:
+            schema: *id010
+          multipart/form-data:
+            schema: *id010
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_profile:
+                    type: string
+                    readOnly: true
+                  status_content:
+                    type: string
+                    maxLength: 240
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                - status_content
+          description: ''
+    patch:
+      operationId: partial_updateProfileStatus
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id011
+              properties:
+                status_content:
+                  type: string
+                  maxLength: 240
+          application/x-www-form-urlencoded:
+            schema: *id011
+          multipart/form-data:
+            schema: *id011
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_profile:
+                    type: string
+                    readOnly: true
+                  status_content:
+                    type: string
+                    maxLength: 240
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                - status_content
+          description: ''
+    delete:
+      operationId: destroyProfileStatus
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
   /api/v1/rest-auth/logout/:
     get:
       operationId: listLogouts
@@ -530,7 +939,7 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id007
+            schema: &id012
               properties:
                 username:
                   type: string
@@ -547,9 +956,9 @@ paths:
               required:
               - username
           application/x-www-form-urlencoded:
-            schema: *id007
+            schema: *id012
           multipart/form-data:
-            schema: *id007
+            schema: *id012
       responses:
         '200':
           content:
@@ -597,7 +1006,7 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id008
+            schema: &id013
               properties:
                 username:
                   type: string
@@ -612,9 +1021,9 @@ paths:
                   type: string
                   maxLength: 150
           application/x-www-form-urlencoded:
-            schema: *id008
+            schema: *id013
           multipart/form-data:
-            schema: *id008
+            schema: *id013
       responses:
         '200':
           content:
@@ -656,7 +1065,7 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id009
+            schema: &id014
               properties:
                 email:
                   type: string
@@ -664,9 +1073,9 @@ paths:
               required:
               - email
           application/x-www-form-urlencoded:
-            schema: *id009
+            schema: *id014
           multipart/form-data:
-            schema: *id009
+            schema: *id014
       responses:
         '200':
           content:
@@ -689,7 +1098,7 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id010
+            schema: &id015
               properties:
                 new_password1:
                   type: string
@@ -707,9 +1116,9 @@ paths:
               - uid
               - token
           application/x-www-form-urlencoded:
-            schema: *id010
+            schema: *id015
           multipart/form-data:
-            schema: *id010
+            schema: *id015
       responses:
         '200':
           content:
@@ -751,7 +1160,7 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id011
+            schema: &id016
               properties:
                 username:
                   type: string
@@ -763,9 +1172,9 @@ paths:
               required:
               - password
           application/x-www-form-urlencoded:
-            schema: *id011
+            schema: *id016
           multipart/form-data:
-            schema: *id011
+            schema: *id016
       responses:
         '200':
           content:
@@ -795,7 +1204,7 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id012
+            schema: &id017
               properties:
                 new_password1:
                   type: string
@@ -807,9 +1216,9 @@ paths:
               - new_password1
               - new_password2
           application/x-www-form-urlencoded:
-            schema: *id012
+            schema: *id017
           multipart/form-data:
-            schema: *id012
+            schema: *id017
       responses:
         '200':
           content:
@@ -834,7 +1243,7 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id013
+            schema: &id018
               properties:
                 username:
                   type: string
@@ -854,9 +1263,9 @@ paths:
               - password1
               - password2
           application/x-www-form-urlencoded:
-            schema: *id013
+            schema: *id018
           multipart/form-data:
-            schema: *id013
+            schema: *id018
       responses:
         '200':
           content:
@@ -881,16 +1290,16 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id014
+            schema: &id019
               properties:
                 key:
                   type: string
               required:
               - key
           application/x-www-form-urlencoded:
-            schema: *id014
+            schema: *id019
           multipart/form-data:
-            schema: *id014
+            schema: *id019
       responses:
         '200':
           content:
@@ -901,4 +1310,61 @@ paths:
                     type: string
                 required:
                 - key
+          description: ''
+  /api/v1/avatar/:
+    put:
+      operationId: UpdateProfileAvatar
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id020
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+                  nullable: true
+          application/x-www-form-urlencoded:
+            schema: *id020
+          multipart/form-data:
+            schema: *id020
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  avatar:
+                    type: string
+                    format: binary
+                    nullable: true
+          description: ''
+    patch:
+      operationId: PartialUpdateProfileAvatar
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id021
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+                  nullable: true
+          application/x-www-form-urlencoded:
+            schema: *id021
+          multipart/form-data:
+            schema: *id021
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  avatar:
+                    type: string
+                    format: binary
+                    nullable: true
           description: ''

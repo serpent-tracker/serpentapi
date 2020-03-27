@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'drf_yasg',
 
     # Local
-    'snakes.apps.SnakesConfig'
+    'snakes.apps.SnakesConfig',
+    'profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = "uploads"
 
 # Rest Framework stuff
 REST_FRAMEWORK = {

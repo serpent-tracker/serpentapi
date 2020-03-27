@@ -1,5 +1,9 @@
 # DB Stuff
 db.sqlite3
 
-# Pycache
+# Pycache & Etc
 __pycache__/
+.DS_Store
+
+# Django Media Stuff
+uploads/
